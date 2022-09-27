@@ -1,3 +1,3 @@
 # Curso_GeeksHubs
 
-# Esto es una prueba del curso
+Aqui se agrupan los diferentes retos y ejercicios del curso 'Backend Python Online'.
