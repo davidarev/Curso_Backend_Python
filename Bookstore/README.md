@@ -1,6 +1,6 @@
 # API BOOKSTORE
 
-## Índice
+## Índice de contenidos
 
 * Tecnologías y Herramientas. 
 * Descripción.
