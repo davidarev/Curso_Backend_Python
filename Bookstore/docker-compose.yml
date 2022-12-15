@@ -1,0 +1,26 @@
+version: "3.9" # Version de docker-compose a utilizar (https://docs.docker.com/compose/compose-file/compose-versioning/)
+   
+services:
+  db: #Nombre del contenedor de la base de datos
+    image: postgres #Imagen utilizada
+    volumes:
+      - ./data/db:/var/lib/postgresql/data #Volumen para la persistencia de datos para que no se pierdan al reiniciar el contenedor
+    ports:
+      - "5432:5432" #Puerto de la base de datos
+    environment:
+      - POSTGRES_DB=postgres #Nombre de la base de datos
+      - POSTGRES_USER=postgres #Usuario de la base de datos
+      - POSTGRES_PASSWORD=postgres #Contraseña de la base de datos
+  web: #Nombre del contenedor de la aplicación
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000 #Comando que se ejecuta al iniciar el contenedor
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000" #Puerto de la aplicación
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db #Dependencia del contenedor de la aplicación con el contenedor de la base de datos
